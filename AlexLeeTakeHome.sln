@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36414.22 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlexLeeTakeHomeConsole", "AlexLeeTakeHomeConsole\AlexLeeTakeHomeConsole.csproj", "{CBBA8E52-159E-4EF5-BFE9-BA424643659C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{DAAD76F8-90FE-476E-8074-AADE6EF35CFC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CBBA8E52-159E-4EF5-BFE9-BA424643659C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBBA8E52-159E-4EF5-BFE9-BA424643659C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBBA8E52-159E-4EF5-BFE9-BA424643659C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBBA8E52-159E-4EF5-BFE9-BA424643659C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAAD76F8-90FE-476E-8074-AADE6EF35CFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAAD76F8-90FE-476E-8074-AADE6EF35CFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAAD76F8-90FE-476E-8074-AADE6EF35CFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAAD76F8-90FE-476E-8074-AADE6EF35CFC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {10696B5F-49B4-4C8E-9704-ADDDEADE96E9}
+	EndGlobalSection
+EndGlobal
