@@ -119,3 +119,6 @@ FROM @Expected AS e
 LEFT JOIN Invoices on e.InvoiceNumber = Invoices.InvoiceNumber
 WHERE Invoices.InvoiceNumber IS NULL
 
+--9. (SQL) - Extract name and age values from a JSON column CustomerData in table Customers.
+SELECT JSON_VALUE(customerdata, '$.name') AS name, JSON_VALUE(customerdata, '$.age') AS age
+FROM Customers
