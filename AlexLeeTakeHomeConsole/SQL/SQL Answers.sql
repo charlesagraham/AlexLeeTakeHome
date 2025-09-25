@@ -122,3 +122,10 @@ WHERE Invoices.InvoiceNumber IS NULL
 --9. (SQL) - Extract name and age values from a JSON column CustomerData in table Customers.
 SELECT JSON_VALUE(customerdata, '$.name') AS name, JSON_VALUE(customerdata, '$.age') AS age
 FROM Customers
+
+--10. (SQL) - Given an Orders table, with columns: CustomerId, OrderDate and Amount, calculate the running total of sales per customer.  
+--Results will include CustomerId, OrderDate, Amount, RunningTotal
+
+SELECT CustomerId, OrderDate, Amount, (SELECT SUM(Amount) FROM Orders as OrdersRunningTotal WHERE CustomerId = Orders.CustomerId AND OrderDate <= Orders.OrderDate) AS RunningTotal
+FROM Orders
+ORDER BY CustomerId, OrderDate
