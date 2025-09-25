@@ -1,0 +1,12 @@
+--Question 4
+SELECT [PurchaseDetailItemAutoId]
+      ,[PurchaseOrderNumber]
+      ,ROW_NUMBER() OVER (PARTITION BY [PurchaseOrderNumber] ORDER BY [PurchaseOrderNumber], [ItemNumber], [LastModifiedDateTime]) AS [LineNumber]
+      ,[ItemNumber]
+      ,[ItemName]
+      ,[ItemDescription]
+      ,[PurchasePrice]
+      ,[PurchaseQuantity]
+      ,[LastModifiedByUser]
+      ,[LastModifiedDateTime]
+  FROM [AlexLeeTakeHome].[dbo].[PurchaseDetailItem]
