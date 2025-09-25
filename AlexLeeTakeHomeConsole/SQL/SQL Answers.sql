@@ -54,3 +54,45 @@ SELECT [PurchaseDetailItemAutoId]
 FROM [PurchaseDetailItem]
 
 GO
+
+--7. (SQL) – Given a table Employees with columns: EmployeeID, Name, ManagerID.
+--Write a recursive CTE to display the hierarchy starting from the top-level manager.
+--Include EmployeeID, Name, ManagerID, ManagerName, and Level (depth in the hierarchy).
+
+WITH CTE_EmployeeLevel AS (
+
+    SELECT
+        EmployeeID,
+        Name,
+        ManagerID,
+        1 AS Level 
+    FROM
+        Employees
+    WHERE
+        ManagerID IS NULL 
+
+    UNION ALL
+
+    SELECT
+        e.EmployeeID,
+        e.Name,
+        e.ManagerID,
+        eh.Level + 1 AS Level
+    FROM
+        Employees AS e
+    INNER JOIN
+        CTE_EmployeeLevel AS eh ON e.ManagerID = eh.EmployeeID
+    WHERE
+        eh.Level < 100 
+)
+SELECT
+    cte.EmployeeID,
+    cte.Name,
+    COALESCE(m.Name, 'N/A') AS ManagerName,
+    cte.Level
+FROM
+    CTE_EmployeeLevel AS cte
+    LEFT JOIN Employees as m on cte.ManagerID = m.EmployeeID
+ORDER BY
+    Level, EmployeeID;
+
