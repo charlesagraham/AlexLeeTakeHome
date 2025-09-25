@@ -35,3 +35,22 @@ JOIN [PurchaseDetailItem] AS pdi ON
     AND d.[ItemNumber] = pdi.[ItemNumber] 
     AND d.[PurchasePrice] = pdi.[PurchasePrice]
     AND d.[PurchaseQuantity] = pdi.[PurchaseQuantity]
+
+
+--6. (SQL) – Create a stored procedure that lists out all the purchase detail records with the line number field from question #4. 
+GO
+CREATE OR ALTER PROCEDURE sp_GetAllPurchaseDetailItemsWithLineNumbers
+AS
+SELECT [PurchaseDetailItemAutoId]
+      ,[PurchaseOrderNumber]
+      ,ROW_NUMBER() OVER (PARTITION BY [PurchaseOrderNumber] ORDER BY [PurchaseOrderNumber], [ItemNumber], [LastModifiedDateTime]) AS [LineNumber]
+      ,[ItemNumber]
+      ,[ItemName]
+      ,[ItemDescription]
+      ,[PurchasePrice]
+      ,[PurchaseQuantity]
+      ,[LastModifiedByUser]
+      ,[LastModifiedDateTime]
+FROM [PurchaseDetailItem]
+
+GO
