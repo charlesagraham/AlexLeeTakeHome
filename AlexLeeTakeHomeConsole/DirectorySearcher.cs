@@ -2,7 +2,11 @@
 
 public class DirectorySearcher
 {
-	public DirectorySearcherResults SearchDirectory(string directoryPath, string searchText, string destinationPath)
+	Lock _foundLinesLock = new Lock();
+	Lock _numberOfLinesSearchTextFound = new Lock();
+	Lock _numberOfOccurrencesSearchTextFound = new Lock();
+
+	public async Task<DirectorySearcherResults> SearchDirectory(string directoryPath, string searchText, string destinationPath)
 	{
 		if (!Directory.Exists(directoryPath))
 		{
@@ -15,11 +19,14 @@ public class DirectorySearcher
 		var files = Directory.GetFiles(directoryPath, "*", SearchOption.TopDirectoryOnly);
 		
 		results.NumberOfFilesProcessed = files.Length;
-		
+
+		List<Task> tasks = new List<Task>();
 		foreach (var filenamePath in files)
 		{
-			ProcessDirectory(filenamePath, searchText, results);
+			tasks.Add(Task.Run(() => ProcessDirectory(filenamePath, searchText, results))); ;
 		}
+
+		Task.WaitAll(tasks);
 
 		File.WriteAllLines(destinationPath, results.FoundLines);
 
@@ -30,7 +37,7 @@ public class DirectorySearcher
 		return results;
 	}
 
-	public void ProcessDirectory(string filenamePath, string searchText, DirectorySearcherResults results)
+	public Task ProcessDirectory(string filenamePath, string searchText, DirectorySearcherResults results)
 	{
 		var lines = File.ReadAllLines(filenamePath);
 		foreach (var line in lines)
@@ -38,18 +45,30 @@ public class DirectorySearcher
 			//Assumption: we are ignoring case when searching for the text
 			if (line.Contains(searchText, StringComparison.OrdinalIgnoreCase))
 			{
-				//todo: put locks here if we are doing this in parallel
-				results.FoundLines.Add(line);
-				results.NumberOfLinesSearchTextFound++;
+				lock (_foundLinesLock)
+				{
+					results.FoundLines.Add(line);
+				}
 
+				lock (_numberOfLinesSearchTextFound)
+				{
+					results.NumberOfLinesSearchTextFound++;
+				}
+				
 				int index = 0;
 				while ((index = line.IndexOf(searchText, index, StringComparison.OrdinalIgnoreCase)) != -1)
 				{
-					results.NumberOfOccurrencesSearchTextFound++;
+					lock (_numberOfOccurrencesSearchTextFound)
+					{
+						results.NumberOfOccurrencesSearchTextFound++;
+					}
+
 					index += searchText.Length;
 				}
 			}
 		}
+
+		return Task.CompletedTask;
 	}
 }
 
