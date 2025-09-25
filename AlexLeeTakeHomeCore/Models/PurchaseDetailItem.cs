@@ -1,26 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
 
 namespace AlexLeeTakeHomeCore.Models;
 
-public partial class PurchaseDetailItem
+[DisplayName("Purchase Detail Item")]
+public class PurchaseDetailItem
 {
-    public long PurchaseDetailItemAutoId { get; set; }
+	[DisplayName("Id")]
+	public long PurchaseDetailItemAutoId { get; set; }
 
-    public string PurchaseOrderNumber { get; set; } = null!;
+	[DisplayName("Purchase Order Number")]
+	public string PurchaseOrderNumber { get; set; } = null!;
 
-    public int ItemNumber { get; set; }
+	[DisplayName("Item Number")]
+	public int ItemNumber { get; set; }
 
-    public string ItemName { get; set; } = null!;
+	[DisplayName("Item Name")]
+	public string ItemName { get; set; } = null!;
 
-    public string? ItemDescription { get; set; }
+	[DisplayName("Item Description")]
+	public string? ItemDescription { get; set; }
 
-    public decimal PurchasePrice { get; set; }
+	[DisplayName("Purchase Price")]
+	public decimal PurchasePrice { get; set; }
 
-    public int PurchaseQuantity { get; set; }
+	[DisplayName("Purchase Quantity")]
+	public int PurchaseQuantity { get; set; }
 
-    public string LastModifiedByUser { get; set; } = null!;
+	[DisplayName("Last Modified By User")]
+	public string LastModifiedByUser { get; set; } = null!;
 
-    public DateTime LastModifiedDateTime { get; set; }
+	[DisplayName("Last Modified Date Time")]
+	public DateTime LastModifiedDateTime { get; set; }
 }
