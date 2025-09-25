@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlexLeeTakeHomeConsole", "A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{DAAD76F8-90FE-476E-8074-AADE6EF35CFC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlexLeeTakeHomeWeb", "AlexLeeTakeHomeWeb\AlexLeeTakeHomeWeb.csproj", "{CFC0BC1E-A8A8-4F57-AAA5-834D5DB05A4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlexLeeTakeHomeCore", "AlexLeeTakeHomeCore\AlexLeeTakeHomeCore.csproj", "{DB4E66D6-8C30-4EDA-8624-9D5A6055A384}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{DAAD76F8-90FE-476E-8074-AADE6EF35CFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAAD76F8-90FE-476E-8074-AADE6EF35CFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAAD76F8-90FE-476E-8074-AADE6EF35CFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFC0BC1E-A8A8-4F57-AAA5-834D5DB05A4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFC0BC1E-A8A8-4F57-AAA5-834D5DB05A4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFC0BC1E-A8A8-4F57-AAA5-834D5DB05A4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFC0BC1E-A8A8-4F57-AAA5-834D5DB05A4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB4E66D6-8C30-4EDA-8624-9D5A6055A384}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB4E66D6-8C30-4EDA-8624-9D5A6055A384}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB4E66D6-8C30-4EDA-8624-9D5A6055A384}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB4E66D6-8C30-4EDA-8624-9D5A6055A384}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
