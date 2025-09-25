@@ -96,3 +96,26 @@ FROM
 ORDER BY
     Level, EmployeeID;
 
+
+
+--8. (SQL) - Find gaps in sequential data.  Given an Invoices table, identify missing invoice numbers (InvoiceNumber) in the Invoices table.
+
+DECLARE @start as int
+DECLARE @end as int
+
+SELECT @start = MIN(InvoiceNumber), @end = MAX(InvoiceNumber) FROM Invoices
+
+DECLARE @Expected AS TABLE(InvoiceNumber int)
+
+DECLARE @InvoiceNumber as int = @start
+WHILE @InvoiceNumber <= @end
+BEGIN
+    INSERT INTO @Expected VALUES (@InvoiceNumber)
+    SELECT @InvoiceNumber = @InvoiceNumber + 1
+END
+
+SELECT e.* 
+FROM @Expected AS e
+LEFT JOIN Invoices on e.InvoiceNumber = Invoices.InvoiceNumber
+WHERE Invoices.InvoiceNumber IS NULL
+
