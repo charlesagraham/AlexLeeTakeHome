@@ -15,7 +15,7 @@ public partial class AlexLeeTakeHomeContext : DbContext
     {
     }
 
-    public virtual DbSet<Customer> Customers { get; set; }
+	public virtual DbSet<Customer> Customers { get; set; }
 
     public virtual DbSet<Employee> Employees { get; set; }
 
@@ -69,9 +69,7 @@ public partial class AlexLeeTakeHomeContext : DbContext
 
         modelBuilder.Entity<PurchaseDetailItem>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("PurchaseDetailItem");
+	        entity.HasKey(e => e.PurchaseDetailItemAutoId).HasName("PK_PurchaseDetailItem");
 
             entity.Property(e => e.ItemDescription)
                 .HasMaxLength(250)
