@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 
 namespace AlexLeeTakeHomeCore.Models;
 
@@ -25,7 +26,12 @@ public partial class AlexLeeTakeHomeContext : DbContext
 
     public virtual DbSet<PurchaseDetailItem> PurchaseDetailItems { get; set; }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+    {
+	    configurationBuilder.Conventions.Remove(typeof(TableNameFromDbSetConvention));
+    }
+
+	protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Customer>(entity =>
         {
