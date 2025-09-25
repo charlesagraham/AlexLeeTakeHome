@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36414.22 d17.14
+VisualStudioVersion = 17.14.36414.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlexLeeTakeHomeConsole", "AlexLeeTakeHomeConsole\AlexLeeTakeHomeConsole.csproj", "{CBBA8E52-159E-4EF5-BFE9-BA424643659C}"
 EndProject
@@ -10,6 +10,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlexLeeTakeHomeWeb", "AlexLeeTakeHomeWeb\AlexLeeTakeHomeWeb.csproj", "{CFC0BC1E-A8A8-4F57-AAA5-834D5DB05A4D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlexLeeTakeHomeCore", "AlexLeeTakeHomeCore\AlexLeeTakeHomeCore.csproj", "{DB4E66D6-8C30-4EDA-8624-9D5A6055A384}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

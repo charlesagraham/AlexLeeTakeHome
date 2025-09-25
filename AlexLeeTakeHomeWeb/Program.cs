@@ -1,4 +1,5 @@
 using AlexLeeTakeHomeCore.Models;
+using AlexLeeTakeHomeCore.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,8 @@ var connectionString = builder.Configuration.GetConnectionString("AlexLeeTakeHom
 // Register the DbContext
 builder.Services.AddDbContext<AlexLeeTakeHomeContext>(options =>
 	options.UseSqlServer(connectionString)); // Use appropriate provider (e.g., UseSqlite, UseNpgsql)
+
+builder.Services.AddScoped<IPurchaseDetailItemService, PurchaseDetailItemService>();
 
 var app = builder.Build();
 
