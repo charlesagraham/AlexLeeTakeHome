@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace AlexLeeTakeHomeConsole;
 
@@ -13,7 +9,7 @@ public class UtilityLibrary
 	/// </summary>
 	public static string InterleaveStrings(string s1, string s2)
 	{
-		//We are assuming that the inputs are not the same size and will just interleave the rest of the strings
+		//Assumption: We are assuming that the inputs are not the same size and will just interleave the rest of the strings
 		//If that were not the case, we would uncomment the following code
 		/*
 		if (s1.Length != s2.Length)
@@ -47,8 +43,6 @@ public class UtilityLibrary
 	/// <summary>
 	/// Question 2: Write a function that takes a string as input and returns whether the string is a palindrome
 	/// </summary>
-	/// <param name="input"></param>
-	/// <returns></returns>
 	public static string GetIsPalendromeDisplayName(string input)
 	{
 		return IsPalendrome(input) ? "Palindrome" : "Not Palindrome";

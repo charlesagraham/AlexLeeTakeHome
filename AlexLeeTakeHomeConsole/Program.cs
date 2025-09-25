@@ -1,2 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using AlexLeeTakeHomeConsole;
+
+var searcher = new DirectorySearcher();
+searcher.SearchDirectory(@"C:\AlexLeeTakeHome", "xyz", @"c:\temp\AlexLeeTakeHomeOutput.txt");
