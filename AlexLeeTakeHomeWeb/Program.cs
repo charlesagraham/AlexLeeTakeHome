@@ -1,7 +1,17 @@
+using AlexLeeTakeHomeCore.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Get the connection string from configuration
+var connectionString = builder.Configuration.GetConnectionString("AlexLeeTakeHome");
+
+// Register the DbContext
+builder.Services.AddDbContext<AlexLeeTakeHomeContext>(options =>
+	options.UseSqlServer(connectionString)); // Use appropriate provider (e.g., UseSqlite, UseNpgsql)
 
 var app = builder.Build();
 
