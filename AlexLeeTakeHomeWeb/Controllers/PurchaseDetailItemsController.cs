@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using AlexLeeTakeHomeCore.Data;
+﻿using AlexLeeTakeHomeCore.Data;
 using AlexLeeTakeHomeCore.Services;
+using AlexLeeTakeHomeWeb.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AlexLeeTakeHomeWeb.Controllers
 {
@@ -43,19 +44,30 @@ namespace AlexLeeTakeHomeWeb.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([FromBody] PurchaseDetailItem purchaseDetailItem)
+        //[ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(PurchaseDetailItemCreateModel purchaseDetailItemCreateModel)
         {
-	        purchaseDetailItem.LastModifiedByUser = HttpContext.User.ToString();
+	        var purchaseDetailItem = new PurchaseDetailItem
+	        {
+				ItemDescription = purchaseDetailItemCreateModel.ItemDescription,
+                ItemName = purchaseDetailItemCreateModel.ItemName,
+                ItemNumber = purchaseDetailItemCreateModel.ItemNumber,
+                PurchaseOrderNumber = purchaseDetailItemCreateModel.PurchaseOrderNumber,
+                PurchasePrice = purchaseDetailItemCreateModel.PurchasePrice,
+                PurchaseQuantity = purchaseDetailItemCreateModel.PurchaseQuantity,
+				LastModifiedDateTime = DateTime.Now,
+		        LastModifiedByUser = HttpContext.User.Identity.Name ?? "Unauthenticated User",
+			};
 
-            if (ModelState.IsValid)
-            {
-	            await _purchaseDetailItemService.CreateAsync(purchaseDetailItem);
+	        if (!ModelState.IsValid)
+	        {
+		        return View(purchaseDetailItem);
+	        }
+	        
+	        await _purchaseDetailItemService.CreateAsync(purchaseDetailItem);
 
-	            return RedirectToAction(nameof(Index));
-            }
+            return RedirectToAction(nameof(Index));
 
-            return View(purchaseDetailItem);
         }
 
         // GET: PurchaseDetailItems/Edit/5

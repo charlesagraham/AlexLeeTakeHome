@@ -1,14 +1,10 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace AlexLeeTakeHomeCore.Data;
+namespace AlexLeeTakeHomeWeb.Models;
 
-[DisplayName("Purchase Detail Item")]
-public class PurchaseDetailItem
+public class PurchaseDetailItemCreateModel
 {
-	[DisplayName("Id")]
-	public long PurchaseDetailItemAutoId { get; set; }
-
 	[Required]
 	[DisplayName("Purchase Order Number")]
 	[StringLength(20)]
@@ -36,12 +32,4 @@ public class PurchaseDetailItem
 	[DisplayName("Purchase Quantity")]
 	[Range(0, int.MaxValue)]
 	public int PurchaseQuantity { get; set; }
-
-	[Required]
-	[DisplayName("Last Modified By User")]
-	public string? LastModifiedByUser { get; set; }
-
-	[Required]
-	[DisplayName("Last Modified Date Time")]
-	public DateTime LastModifiedDateTime { get; set; } = DateTime.Now;
 }
