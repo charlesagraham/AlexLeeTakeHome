@@ -1,4 +1,4 @@
-using AlexLeeTakeHomeCore.Models;
+using AlexLeeTakeHomeCore.Data;
 using AlexLeeTakeHomeCore.Services;
 using Microsoft.EntityFrameworkCore;
 

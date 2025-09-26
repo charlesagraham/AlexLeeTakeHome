@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using AlexLeeTakeHomeCore.Models;
+using AlexLeeTakeHomeCore.Data;
 using AlexLeeTakeHomeCore.Services;
 
 namespace AlexLeeTakeHomeWeb.Controllers

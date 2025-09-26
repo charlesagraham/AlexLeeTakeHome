@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace AlexLeeTakeHomeCore.Models;
+namespace AlexLeeTakeHomeCore.Data;
 
 [DisplayName("Purchase Detail Item")]
 public class PurchaseDetailItem

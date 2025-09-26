@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace AlexLeeTakeHomeCore.Models;
+﻿namespace AlexLeeTakeHomeCore.Data;
 
 public partial class Order
 {

@@ -1,6 +1,6 @@
-﻿using AlexLeeTakeHomeCore.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.CodeAnalysis;
+using AlexLeeTakeHomeCore.Data;
 
 namespace AlexLeeTakeHomeCore.Services;
 

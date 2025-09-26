@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using AlexLeeTakeHomeCore.Models;
+using AlexLeeTakeHomeCore.Data;
 
 namespace AlexLeeTakeHomeCore.Services;
 
