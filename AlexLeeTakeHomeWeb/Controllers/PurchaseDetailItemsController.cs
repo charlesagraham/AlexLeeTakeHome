@@ -14,13 +14,11 @@ namespace AlexLeeTakeHomeWeb.Controllers
 			_purchaseDetailItemService = purchaseDetailItemService;
 		}
 
-        // GET: PurchaseDetailItems
         public async Task<IActionResult> Index()
         {
             return View(await _purchaseDetailItemService.GetAllAsync());
         }
 
-        // GET: PurchaseDetailItems/Details/5
         public async Task<IActionResult> Details(long id)
         {
             if (id == null)
@@ -44,7 +42,7 @@ namespace AlexLeeTakeHomeWeb.Controllers
         }
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(PurchaseDetailItemCreateModel purchaseDetailItemCreateModel)
         {
 	        var purchaseDetailItem = new PurchaseDetailItem
@@ -70,14 +68,8 @@ namespace AlexLeeTakeHomeWeb.Controllers
 
         }
 
-        // GET: PurchaseDetailItems/Edit/5
         public async Task<IActionResult> Edit(long id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
             var purchaseDetailItem = await _purchaseDetailItemService.GetByIdAsync(id);
             if (purchaseDetailItem == null)
             {
@@ -87,9 +79,6 @@ namespace AlexLeeTakeHomeWeb.Controllers
             return View(purchaseDetailItem);
         }
 
-        // POST: PurchaseDetailItems/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(long id, [Bind("PurchaseDetailItemAutoId,PurchaseOrderNumber,ItemNumber,ItemName,ItemDescription,PurchasePrice,PurchaseQuantity,LastModifiedByUser,LastModifiedDateTime")] PurchaseDetailItem purchaseDetailItem)
@@ -99,27 +88,35 @@ namespace AlexLeeTakeHomeWeb.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-	            await _purchaseDetailItemService.UpdateAsync(purchaseDetailItem);
-	            
-                return RedirectToAction(nameof(Index));
+	            return View(purchaseDetailItem);
             }
 
-            return View(purchaseDetailItem);
+            await _purchaseDetailItemService.UpdateAsync(purchaseDetailItem);
+	            
+            return RedirectToAction(nameof(Index));
+
         }
 
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(long id)
-        {
-	        var wasDeleted = await _purchaseDetailItemService.DeleteByIdAsync(id);
-	        if (!wasDeleted)
-	        {
-		        return NotFound();
-	        }
+		public async Task<IActionResult> Delete(long id)
+		{
+			var purchaseDetailItem = await _purchaseDetailItemService.GetByIdAsync(id);
+			if (purchaseDetailItem == null)
+			{
+				return NotFound();
+			}
+
+			return View(purchaseDetailItem);
+		}
+
+		[HttpPost, ActionName("Delete")]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> DeleteConfirmed(long id)
+		{
+			await _purchaseDetailItemService.DeleteByIdAsync(id);
 
 			return RedirectToAction(nameof(Index));
-        }
-    }
+		}
+	}
 }
