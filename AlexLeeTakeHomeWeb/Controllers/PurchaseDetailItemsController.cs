@@ -46,6 +46,8 @@ namespace AlexLeeTakeHomeWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([FromBody] PurchaseDetailItem purchaseDetailItem)
         {
+	        purchaseDetailItem.LastModifiedByUser = HttpContext.User.ToString();
+
             if (ModelState.IsValid)
             {
 	            await _purchaseDetailItemService.CreateAsync(purchaseDetailItem);
