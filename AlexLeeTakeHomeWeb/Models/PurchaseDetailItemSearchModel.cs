@@ -1,12 +1,20 @@
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+
 namespace AlexLeeTakeHomeWeb.Models;
 
 public class PurchaseDetailItemSearchModel
 {
-	public string PurchaseOrderNumber { get; set; } = null!;
+	[DisplayName("Purchase Order Number")]
+	public string? PurchaseOrderNumber { get; set; } = null!;
 
-	public int ItemNumber { get; set; }
+	[Range(0, int.MaxValue)]
+	[DisplayName("Item Number")]
+	public int? ItemNumber { get; set; }
 
-	public string ItemName { get; set; } = null!;
+	[DisplayName("Item Name")]
+	public string? ItemName { get; set; } = null!;
 
+	[DisplayName("Item Description")]
 	public string? ItemDescription { get; set; }
 }

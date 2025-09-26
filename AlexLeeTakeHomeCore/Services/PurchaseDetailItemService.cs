@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.CodeAnalysis;
 using AlexLeeTakeHomeCore.Data;
+using Microsoft.IdentityModel.Tokens;
 
 namespace AlexLeeTakeHomeCore.Services;
 
@@ -16,6 +17,32 @@ public class PurchaseDetailItemService : IPurchaseDetailItemService
 	public async Task<List<PurchaseDetailItem>> GetAllAsync()
 	{
 		return await _context.PurchaseDetailItems.ToListAsync();
+	}
+
+	public Task<List<PurchaseDetailItem>> SearchAsync(PurchaseDetailItemSearchRequest searchRequest)
+	{
+		IQueryable<PurchaseDetailItem> results = _context.PurchaseDetailItems;
+		if (!searchRequest.PurchaseOrderNumber.IsNullOrEmpty())
+		{
+			results = results.Where(r => r.PurchaseOrderNumber.Contains(searchRequest.PurchaseOrderNumber));
+		}
+
+		if (searchRequest.ItemNumber.HasValue)
+		{
+			results = results.Where(r => r.ItemNumber == searchRequest.ItemNumber);
+		}
+
+		if (!searchRequest.ItemName.IsNullOrEmpty())
+		{
+			results = results.Where(r => r.ItemName.Contains(searchRequest.ItemName));
+		}
+
+		if (!searchRequest.ItemDescription.IsNullOrEmpty())
+		{
+			results = results.Where(r => r.ItemDescription.Contains(searchRequest.ItemDescription));
+		}
+
+		return results.ToListAsync();
 	}
 
 	public async Task<PurchaseDetailItem?> GetByIdAsync([DisallowNull] long? id)

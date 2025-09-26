@@ -6,6 +6,7 @@ namespace AlexLeeTakeHomeCore.Services;
 public interface IPurchaseDetailItemService
 {
 	Task<List<PurchaseDetailItem>> GetAllAsync();
+	Task<List<PurchaseDetailItem>> SearchAsync(PurchaseDetailItemSearchRequest searchRequest);
 	Task<PurchaseDetailItem?> GetByIdAsync([DisallowNull] long? id);
 	Task CreateAsync(PurchaseDetailItem purchaseDetailItem);
 	Task UpdateAsync(PurchaseDetailItem purchaseDetailItem);

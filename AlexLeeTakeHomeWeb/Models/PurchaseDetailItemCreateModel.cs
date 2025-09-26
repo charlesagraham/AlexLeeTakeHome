@@ -12,6 +12,7 @@ public class PurchaseDetailItemCreateModel
 
 	[Required]
 	[DisplayName("Item Number")]
+	[Range(0, int.MaxValue)]
 	public int ItemNumber { get; set; }
 
 	[Required]

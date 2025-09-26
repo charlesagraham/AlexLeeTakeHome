@@ -25,7 +25,24 @@ namespace AlexLeeTakeHomeWeb.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> Details(long id)
+        public async Task<IActionResult> Search(PurchaseDetailItemSearchModel searchModel)
+        {
+	        var model = new PurchaseDetailItemIndexModel
+	        {
+		        Search = searchModel,
+		        Results = await _purchaseDetailItemService.SearchAsync(new PurchaseDetailItemSearchRequest
+		        {
+					ItemDescription = searchModel.ItemDescription,
+					ItemName = searchModel.ItemName,
+					ItemNumber = searchModel.ItemNumber,
+					PurchaseOrderNumber = searchModel.PurchaseOrderNumber
+		        }),
+	        };
+
+	        return View("Index", model);
+		}
+
+		public async Task<IActionResult> Details(long id)
         {
             if (id == null)
             {
