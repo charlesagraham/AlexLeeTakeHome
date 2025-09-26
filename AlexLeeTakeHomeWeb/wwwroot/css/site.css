@@ -1,31 +1,135 @@
 html {
-  font-size: 14px;
+	font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+	html {
+		font-size: 16px;
+	}
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+	box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+	position: relative;
+	min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+	margin-bottom: 60px;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+header h1 {
+	margin: 0;
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+nav ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+	nav ul li {
+		display: inline-block;
+		margin-right: 10px;
+	}
+
+		nav ul li a {
+			color: #212529;
+			text-decoration: none;
+		}
+
+main {
+	margin: 20px;
+}
+
+a {
+	color: #212529;
+	text-decoration: none;
+}
+
+	a:hover {
+		color: #6d6dfb;
+	}
+
+.post-card {
+	background-color: #e6e6faff;
+	width: 60%;
+	border-radius: 10px;
+	padding: 20px;
+}
+
+article {
+	flex: 3;
+	padding: 30px 30px 20px 30px;
+	background-color: #e6e6faff;
+	border-radius: 10px;
+}
+
+	article h2 {
+		margin-top: 0;
+	}
+
+.metadata {
+	font-style: italic;
+	margin-bottom: 10px;
+}
+
+section {
+	line-height: 1.5;
+}
+
+blockquote {
+	font-style: italic;
+	background-color: #f2f2f2;
+	padding: 10px;
+}
+
+aside {
+	flex: 1;
+}
+
+.bg-custom {
+	background-color: #e6e6fa;
+}
+
+.post-card img {
+	width: 100%;
+	height: auto;
+	margin-bottom: 10px;
+}
+
+.tag {
+	background-color: #babaff;
+	display: inline-block;
+	font-size: 15px;
+	font-weight: 500;
+	padding: 2px 0.66em 1px;
+	text-transform: uppercase;
+	border-radius: 5px;
+}
+
+	.tag a:hover {
+		color: #6d6dfb;
+	}
+
+.post-date {
+	margin-bottom: 5px;
+}
+
+.footer {
+	background-color: #e6e6fa;
+	color: #666;
+	text-align: center;
+	padding: 20px;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
 }
