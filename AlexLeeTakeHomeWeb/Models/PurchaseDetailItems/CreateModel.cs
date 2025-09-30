@@ -1,9 +1,9 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace AlexLeeTakeHomeWeb.Models;
+namespace AlexLeeTakeHomeWeb.Models.PurchaseDetailItems;
 
-public class PurchaseDetailItemCreateModel
+public class CreateModel
 {
 	[Required]
 	[DisplayName("Purchase Order Number")]

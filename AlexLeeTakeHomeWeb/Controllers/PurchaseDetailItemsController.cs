@@ -1,6 +1,6 @@
 ﻿using AlexLeeTakeHomeCore.Data;
 using AlexLeeTakeHomeCore.Services;
-using AlexLeeTakeHomeWeb.Models;
+using AlexLeeTakeHomeWeb.Models.PurchaseDetailItems;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlexLeeTakeHomeWeb.Controllers
@@ -16,18 +16,18 @@ namespace AlexLeeTakeHomeWeb.Controllers
 
         public async Task<IActionResult> Index()
         {
-	        var model = new PurchaseDetailItemIndexModel
+	        var model = new IndexModel
 	        {
-		        Search = new PurchaseDetailItemSearchModel(),
+		        Search = new SearchModel(),
 		        Results = await _purchaseDetailItemService.GetAllAsync(),
 	        };
 
             return View(model);
         }
 
-        public async Task<IActionResult> Search(PurchaseDetailItemSearchModel searchModel)
+        public async Task<IActionResult> Search(SearchModel searchModel)
         {
-	        var model = new PurchaseDetailItemIndexModel
+	        var model = new IndexModel
 	        {
 		        Search = searchModel,
 		        Results = await _purchaseDetailItemService.SearchAsync(new PurchaseDetailItemSearchRequest
@@ -66,16 +66,16 @@ namespace AlexLeeTakeHomeWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(PurchaseDetailItemCreateModel purchaseDetailItemCreateModel)
+        public async Task<IActionResult> Create(CreateModel CreateModel)
         {
 	        var purchaseDetailItem = new PurchaseDetailItem
 	        {
-				ItemDescription = purchaseDetailItemCreateModel.ItemDescription,
-                ItemName = purchaseDetailItemCreateModel.ItemName,
-                ItemNumber = purchaseDetailItemCreateModel.ItemNumber,
-                PurchaseOrderNumber = purchaseDetailItemCreateModel.PurchaseOrderNumber,
-                PurchasePrice = purchaseDetailItemCreateModel.PurchasePrice,
-                PurchaseQuantity = purchaseDetailItemCreateModel.PurchaseQuantity,
+				ItemDescription = CreateModel.ItemDescription,
+                ItemName = CreateModel.ItemName,
+                ItemNumber = CreateModel.ItemNumber,
+                PurchaseOrderNumber = CreateModel.PurchaseOrderNumber,
+                PurchasePrice = CreateModel.PurchasePrice,
+                PurchaseQuantity = CreateModel.PurchaseQuantity,
 				LastModifiedDateTime = DateTime.Now,
 		        LastModifiedByUser = HttpContext.User.Identity.Name ?? "Unauthenticated User",
 			};
