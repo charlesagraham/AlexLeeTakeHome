@@ -13,7 +13,7 @@ public class CreateModel
 	[Required]
 	[DisplayName("Item Number")]
 	[Range(0, int.MaxValue)]
-	public int ItemNumber { get; set; }
+	public int? ItemNumber { get; set; } = null!;
 
 	[Required]
 	[DisplayName("Item Name")]
@@ -27,10 +27,10 @@ public class CreateModel
 	[Required]
 	[Range(0, 99999999.99)] //Max Value of Decimal(10,2)
 	[DisplayName("Purchase Price")]
-	public decimal PurchasePrice { get; set; }
+	public decimal? PurchasePrice { get; set; } = null!;
 
 	[Required]
 	[DisplayName("Purchase Quantity")]
 	[Range(0, int.MaxValue)]
-	public int PurchaseQuantity { get; set; }
+	public int? PurchaseQuantity { get; set; } = null!;
 }

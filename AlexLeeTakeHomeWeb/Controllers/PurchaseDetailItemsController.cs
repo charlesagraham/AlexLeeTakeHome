@@ -72,10 +72,10 @@ namespace AlexLeeTakeHomeWeb.Controllers
 	        {
 				ItemDescription = CreateModel.ItemDescription,
                 ItemName = CreateModel.ItemName,
-                ItemNumber = CreateModel.ItemNumber,
+                ItemNumber = CreateModel.ItemNumber.Value,
                 PurchaseOrderNumber = CreateModel.PurchaseOrderNumber,
-                PurchasePrice = CreateModel.PurchasePrice,
-                PurchaseQuantity = CreateModel.PurchaseQuantity,
+                PurchasePrice = CreateModel.PurchasePrice.Value,
+                PurchaseQuantity = CreateModel.PurchaseQuantity.Value,
 				LastModifiedDateTime = DateTime.Now,
 		        LastModifiedByUser = HttpContext.User.Identity.Name ?? "Unauthenticated User",
 			};

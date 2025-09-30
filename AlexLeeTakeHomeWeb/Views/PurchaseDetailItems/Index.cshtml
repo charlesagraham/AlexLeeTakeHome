@@ -1,17 +1,57 @@
 ﻿@using AlexLeeTakeHomeWeb.Models.PurchaseDetailItems
 @model IndexModel
 
+<script>
+    $( function() {
+        $("div.create-dialog form").validate();
+
+        let create = function() {
+            let isValid = true;
+            $('.ui-state-error').removeClass('ui-state-error');
+
+            $("div.create-dialog form").submit();
+        };
+
+        let cancel = function() {
+            $( this ).dialog( "close" );
+        };
+        
+        $( "#createDialog" ).dialog({
+            autoOpen: false,
+            modal: true,
+            width: 600,
+            buttons:  {
+                "Create": create,
+                "Cancel": cancel,
+                }
+        });
+
+        $( "#createButton" ).button().on( "click", function() {
+            $( "#createDialog" ).dialog( "open" );
+            return false;
+        });
+    });
+</script>
+
 @{
     ViewData["Title"] = "Purchase Detail Items";
 }
 
+
+
 <h1>Purchase Detail Items</h1>
 
 <p>
-    <a asp-action="Create">Create</a>
+    <a href="#" id="createButton">Create</a>
 </p>
 
 @Html.Partial("_Search", Model.Search)
 @Html.Partial("_Results", Model.Results)
+@Html.Partial("_CreateDialog", Model.Create)
 
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
 

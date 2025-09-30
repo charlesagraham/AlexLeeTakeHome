@@ -1,0 +1,37 @@
+﻿@model AlexLeeTakeHomeWeb.Models.PurchaseDetailItems.CreateModel
+
+<div id="createDialog" title="Create" class="create-dialog">
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="PurchaseOrderNumber" class="control-label"></label>
+            <input asp-for="PurchaseOrderNumber" class="form-control" />
+            <span asp-validation-for="PurchaseOrderNumber" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ItemNumber" class="control-label"></label>
+            <input asp-for="ItemNumber" class="form-control" />
+            <span asp-validation-for="ItemNumber" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ItemName" class="control-label"></label>
+            <input asp-for="ItemName" class="form-control" />
+            <span asp-validation-for="ItemName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ItemDescription" class="control-label"></label>
+            <input asp-for="ItemDescription" class="form-control" />
+            <span asp-validation-for="ItemDescription" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="PurchasePrice" class="control-label"></label>
+            <input asp-for="PurchasePrice" class="form-control" />
+            <span asp-validation-for="PurchasePrice" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="PurchaseQuantity" class="control-label"></label>
+            <input asp-for="PurchaseQuantity" class="form-control" />
+            <span asp-validation-for="PurchaseQuantity" class="text-danger"></span>
+        </div>
+    </form>
+</div>
