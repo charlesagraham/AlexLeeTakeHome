@@ -1,6 +1,76 @@
 ﻿@using AlexLeeTakeHomeWeb.Models.PurchaseDetailItems
 @model IndexModel
 
+<script>
+    let submitDialogForm = function() {
+        $('.ui-state-error').removeClass('ui-state-error');
+
+        let form = $(this).find('form');
+
+        let isValid = form.valid();
+        if(isValid) {
+            form.find('input.whole-number').each(function() {
+                let inputValue = $(this).val();
+                let parsedValue = Number(inputValue);
+                if(!Number.isInteger(parsedValue) || inputValue.includes('.')){
+                    isValid = false;
+                }
+            });
+        }
+
+        if(isValid) {
+            $(this).find('form').submit();
+        }
+        else {
+            return false;
+        }
+    };
+
+    let cancel = function() {
+        $(this).dialog('close');
+    };
+
+    let updatePurchaseDetailItem = function(id) {
+        $.get('/PurchaseDetailItems/Edit/' + id, function(editInnerHtml) {
+            $('div.update-dialog').html(editInnerHtml);
+            
+            let form = $("div.update-dialog form");
+            form.removeData("validator");
+            form.removeData("unobtrusiveValidation");
+            $.validator.unobtrusive.parse(form);
+
+            $('div.update-dialog').dialog('open');
+        });
+    };
+
+    $( function() {
+        $('div.create-dialog').dialog({
+            autoOpen: false,
+            modal: true,
+            width: 600,
+            buttons:  {
+                'Create': submitDialogForm,
+                'Cancel': cancel,
+            }
+        });
+
+        $('div.update-dialog').dialog({
+            autoOpen: false,
+            modal: true,
+            width: 600,
+            buttons:  {
+                'Update': submitDialogForm,
+                'Cancel': cancel,
+            }
+        });
+
+        $('#createButton').button().on('click', function() {
+            $('div.create-dialog').dialog('open');
+            return false;
+        });
+    });
+</script>
+
 @{
     ViewData["Title"] = "Purchase Detail Items";
 }
@@ -8,10 +78,19 @@
 <h1>Purchase Detail Items</h1>
 
 <p>
-    <a asp-action="Create">Create</a>
+    <a href="#" id="createButton">Create</a>
 </p>
 
 @Html.Partial("_Search", Model.Search)
 @Html.Partial("_Results", Model.Results)
+@Html.Partial("_CreateDialog", Model.Create)
 
+<div id="updateDialog" title="Update" class="update-dialog" style="display: none;">
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
 
