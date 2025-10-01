@@ -62,7 +62,7 @@
                     @Html.DisplayFor(modelItem => item.LastModifiedDateTime)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.PurchaseDetailItemAutoId">Edit</a> |
+                    <a href="#" onclick="updatePurchaseDetailItem(@item.PurchaseDetailItemAutoId)">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.PurchaseDetailItemAutoId">Details</a> |
                     <a asp-action="Delete" asp-route-id="@item.PurchaseDetailItemAutoId">Delete</a>
                 </td>

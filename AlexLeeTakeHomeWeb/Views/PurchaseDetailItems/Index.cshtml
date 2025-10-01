@@ -2,32 +2,59 @@
 @model IndexModel
 
 <script>
+    let submitDialogForm = function() {
+        $('.ui-state-error').removeClass('ui-state-error');
+
+        let isValid = $(this).find('form').valid();
+
+        if(isValid) {
+            $(this).find('form').submit();
+        }
+        else {
+            return false;
+        }
+    };
+
+    let cancel = function() {
+        $(this).dialog('close');
+    };
+
+    let updatePurchaseDetailItem = function(id) {
+        $.get('/PurchaseDetailItems/Edit/' + id, function(editInnerHtml) {
+            $('div.update-dialog').html(editInnerHtml);
+            
+            var form = $("div.update-dialog form");
+            form.removeData("validator");
+            form.removeData("unobtrusiveValidation");
+            $.validator.unobtrusive.parse(form);
+
+            $('div.update-dialog').dialog('open');
+        });
+    };
+
     $( function() {
-        $("div.create-dialog form").validate();
-
-        let create = function() {
-            let isValid = true;
-            $('.ui-state-error').removeClass('ui-state-error');
-
-            $("div.create-dialog form").submit();
-        };
-
-        let cancel = function() {
-            $( this ).dialog( "close" );
-        };
-        
-        $( "#createDialog" ).dialog({
+        $('div.create-dialog').dialog({
             autoOpen: false,
             modal: true,
             width: 600,
             buttons:  {
-                "Create": create,
-                "Cancel": cancel,
-                }
+                'Create': submitDialogForm,
+                'Cancel': cancel,
+            }
         });
 
-        $( "#createButton" ).button().on( "click", function() {
-            $( "#createDialog" ).dialog( "open" );
+        $('div.update-dialog').dialog({
+            autoOpen: false,
+            modal: true,
+            width: 600,
+            buttons:  {
+                'Update': submitDialogForm,
+                'Cancel': cancel,
+            }
+        });
+
+        $('#createButton').button().on('click', function() {
+            $('div.create-dialog').dialog('open');
             return false;
         });
     });
@@ -36,8 +63,6 @@
 @{
     ViewData["Title"] = "Purchase Detail Items";
 }
-
-
 
 <h1>Purchase Detail Items</h1>
 
@@ -48,6 +73,9 @@
 @Html.Partial("_Search", Model.Search)
 @Html.Partial("_Results", Model.Results)
 @Html.Partial("_CreateDialog", Model.Create)
+
+<div id="updateDialog" title="Update" class="update-dialog" style="display: none;">
+</div>
 
 @section Scripts {
     @{
