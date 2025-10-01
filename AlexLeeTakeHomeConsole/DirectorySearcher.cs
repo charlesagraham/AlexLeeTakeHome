@@ -13,12 +13,13 @@ public class DirectorySearcher
 			throw new DirectoryNotFoundException($"Directory not found: {directoryPath}");
 		}
 
-		var results = new DirectorySearcherResults();
-
+		
 		//Assumption: We are making the assumption that we are only searching the top level of the directory
 		var files = Directory.GetFiles(directoryPath, "*", SearchOption.TopDirectoryOnly);
-		
-		results.NumberOfFilesProcessed = files.Length;
+		var results = new DirectorySearcherResults
+		{
+			NumberOfFilesProcessed = files.Length
+		};
 
 		List<Task> tasks = new List<Task>();
 		foreach (var filenamePath in files)
