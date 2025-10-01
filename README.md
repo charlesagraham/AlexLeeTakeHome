@@ -11,7 +11,7 @@ Located in the relative path AlexLeeTakeHomeConsole\SQL\SQL Answers.sql
 MVC Implementation:
 Located in the AlexLeeTakeHomeWeb Project.  The connection string is set in the appsettings.json file.
 
-I used database first model generation for the db context and models.  Once that was done, I was able to scaffold the very basic CRUD application.  I then refactored that to put all database code in a service that was then injected into the controller.  I modified the models to add validation based on the database schema and added dtos and view models where needed.
+I used database first model generation for the db context and models.  Once that was done, I was able to scaffold the very basic CRUD application.  I then refactored that to put all database code in a service that was then injected into the controller.  I modified the models to add validation based on the database schema and added dtos and view models where needed. I then added search using contains matching on string and equals on numbers.  I then refactored to make sure that the create and update were in their own modal dialog windows using jquery ui.
 
 Database Design Notes:
 This table should be normalized and have an Items table with columns Id, Number, and Name, and the original table would just have an ItemId table.  I didn't think that this was in the scope of this exercise, but in the real world, that's what I would do.
@@ -19,9 +19,7 @@ This table should be normalized and have an Items table with columns Id, Number,
 Assumptions:
 I made the assumption that the search was just text, but there could be arguments made to add search text controls or dropdowns, where applicable.  The CSS is very basic and could be changed for improvement at a later date.
 
-Proposed changes (some may be implemented prior to interview)
-1.	Use modal dialogs
-2.	Improve search functionality
-3.	Fix styling
-4.	Expose services in web api and create a React version
+Proposed changes
+1. Fix styling
+2.	Expose services in web api and create a React version
 
