@@ -5,7 +5,18 @@
     let submitDialogForm = function() {
         $('.ui-state-error').removeClass('ui-state-error');
 
-        let isValid = $(this).find('form').valid();
+        let form = $(this).find('form');
+
+        let isValid = form.valid();
+        if(isValid) {
+            form.find('input.whole-number').each(function() {
+                let inputValue = $(this).val();
+                let parsedValue = Number(inputValue);
+                if(!Number.isInteger(parsedValue) || inputValue.includes('.')){
+                    isValid = false;
+                }
+            });
+        }
 
         if(isValid) {
             $(this).find('form').submit();
@@ -23,7 +34,7 @@
         $.get('/PurchaseDetailItems/Edit/' + id, function(editInnerHtml) {
             $('div.update-dialog').html(editInnerHtml);
             
-            var form = $("div.update-dialog form");
+            let form = $("div.update-dialog form");
             form.removeData("validator");
             form.removeData("unobtrusiveValidation");
             $.validator.unobtrusive.parse(form);
