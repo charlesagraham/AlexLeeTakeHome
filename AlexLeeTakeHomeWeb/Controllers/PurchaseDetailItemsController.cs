@@ -66,16 +66,16 @@ namespace AlexLeeTakeHomeWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CreateModel CreateModel)
+        public async Task<IActionResult> Create(CreateModel createModel)
         {
 	        var purchaseDetailItem = new PurchaseDetailItem
 	        {
-				ItemDescription = CreateModel.ItemDescription,
-                ItemName = CreateModel.ItemName,
-                ItemNumber = CreateModel.ItemNumber.Value,
-                PurchaseOrderNumber = CreateModel.PurchaseOrderNumber,
-                PurchasePrice = CreateModel.PurchasePrice.Value,
-                PurchaseQuantity = CreateModel.PurchaseQuantity.Value,
+				ItemDescription = createModel.ItemDescription,
+                ItemName = createModel.ItemName,
+                ItemNumber = createModel.ItemNumber.Value,
+                PurchaseOrderNumber = createModel.PurchaseOrderNumber,
+                PurchasePrice = createModel.PurchasePrice.Value,
+                PurchaseQuantity = createModel.PurchaseQuantity.Value,
 				LastModifiedDateTime = DateTime.Now,
 		        LastModifiedByUser = HttpContext.User.Identity.Name ?? "Unauthenticated User",
 			};
